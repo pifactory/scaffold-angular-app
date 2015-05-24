@@ -296,9 +296,12 @@ module.exports = function (grunt) {
           removeCommentsFromCDATA: true,
           removeOptionalTags: true
         },
-        files: {
-          'dist/index.html': 'dist/index.html'
-        }
+        files: [{
+          expand: true,
+          cwd: 'dist',
+          src: '**/*.html',
+          dest: 'dist'
+        }]
       }
     },
 
