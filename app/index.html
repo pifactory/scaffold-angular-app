@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Demo App for scaffold-angular-app-lib</title>
+    <meta name="viewport" content="width=device-width">
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/scaffold-angular-app-lib/dist/scaffold-angular-app-lib/main.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css(.tmp/app.gen) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+<body>
+<!--[if lt IE 9]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div ng-app="mainApp">
+    This is the Main APP
+    <ng-include src="'views/someView.html'"></ng-include>
+</div>
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/scaffold-angular-app-lib/dist/scaffold-angular-app-lib/index.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js scripts/index.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/demoAppCtrl.js"></script>
+<!-- endbuild -->
+</body>
+</html>
