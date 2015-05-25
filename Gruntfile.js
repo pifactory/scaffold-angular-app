@@ -275,13 +275,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // Replace Google CDN references
-    cdnify: {
-      dist: {
-        html: ['dist/*.html']
-      }
-    },
-
     pkg: grunt.file.readJSON('package.json'),
 
     /*eslint camelcase: [2, {properties: "never"}]*/
