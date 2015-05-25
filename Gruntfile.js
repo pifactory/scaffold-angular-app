@@ -108,30 +108,6 @@ module.exports = function (grunt) {
       }
     },
 
-    browserSync: {
-      bsFiles: {
-        src: [
-          'app/**/*.{html,js,css}',
-          '.tmp/app.gen/**/*.css',
-          '.tmp/app.libs/**/*.{html,js,css}'
-        ]
-      },
-      options: {
-        port: 9000,
-        watchTask: true,
-        server: {
-          baseDir: [
-            '.tmp/app.gen',
-            'app',
-            '.tmp/app.libs'
-          ],
-          routes: {
-            '/bower_components': 'bower_components'
-          }
-        }
-      }
-    },
-
     connect: {
       options: {
         port: 9000,
@@ -152,6 +128,12 @@ module.exports = function (grunt) {
               )
             ];
           }
+        }
+      },
+      dist: {
+        options: {
+          open: true,
+          base: 'dist'
         }
       }
     },
@@ -324,15 +306,23 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('serve', 'Start demo-app with livereload. Use serve:browserSync to run it with browserSync.', function () {
-    grunt.task.run([
-      'build:develop',
-      'connect:livereload',
-      'watch'
-    ]);
+  grunt.registerTask('serve', 'Start the app with livereload. Use serve:dist to serve the build.', function (target) {
+
+    if (target === 'dist') {
+      return grunt.task.run([
+        'build',
+        'connect:dist:keepalive'
+      ]);
+    } else {
+      grunt.task.run([
+        'build:develop',
+        'connect:livereload',
+        'watch'
+      ]);
+    }
   });
 
-  grunt.registerTask('build', 'Prepare distribution files from sources in app-lib folder', function (phase) {
+  grunt.registerTask('build', 'Prepare distribution files from sources in app folder', function (phase) {
     grunt.task.run([
       'clean:develop',
       'eslint:develop',
