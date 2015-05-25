@@ -56,22 +56,16 @@ module.exports = function (grunt) {
             '*/dist/**/*',
             '!**/*.{js,css}'
           ],
-          filter: 'isFile',
+          filter: function (src) {
+            var srcpath = src.split(path.sep);
+            return srcpath[1] === srcpath[3];
+          },
           rename: function (dest, src) {
             var srcpath = src.split(path.sep);
-            if (srcpath[0] === srcpath[2]) {
-              srcpath.splice(0, 2);
-              return path.join('.tmp/app.libs', srcpath.join(path.sep));
-            } else {
-              return '.tmp/<<SKIP>>';
-            }
+            return path.join('.tmp/app.libs', srcpath.slice(2).join(path.sep));
           }
         }],
         options: {
-          process: function (content, src) {
-            var srcpath = src.split(path.sep);
-            return srcpath[1] === srcpath[3] ? content : false;
-          },
           timestamp: true
         }
       },
@@ -108,7 +102,7 @@ module.exports = function (grunt) {
     },
 
     wiredep: {
-      demo: {
+      develop: {
         src: 'app/index.html',
         ignorePath: /\.\.\/(dist\/)?/
       }
@@ -211,9 +205,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: 'app/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: 'dist/images'
+          cwd: 'dist',
+          src: '**/*.{png,jpg,jpeg,gif}',
+          dest: 'dist'
         }]
       }
     },
@@ -222,9 +216,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: 'app/images',
-          src: '{,*/}*.svg',
-          dest: 'dist/images'
+          cwd: 'dist',
+          src: '**/*.svg',
+          dest: 'dist'
         }]
       }
     },
@@ -359,16 +353,15 @@ module.exports = function (grunt) {
         'clean:dist',
         'useminPrepare',
         'concat',
+        'copy:dist',
         'imagemin',
         'svgmin',
         'cssmin',
         'ngAnnotate',
         'uglify',
-        'copy:dist',
         'filerev',
         'usemin',
-        'htmlmin',
-        'cdnify'
+        'htmlmin'
       ]);
     }
   });

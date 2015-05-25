@@ -2,6 +2,7 @@
   "rules": {
     "quotes": [2, "single", "avoid-escape"],
     "strict": [2, "global"],
-    "global-strict": [2, "always"]
+    "global-strict": [2, "always"],
+    "no-unused-vars": [1]
   }
 }
