@@ -111,13 +111,9 @@ module.exports = function (grunt) {
     browserSync: {
       bsFiles: {
         src: [
-          'app/**/*.html',
-          'app/**/*.js',
-          'app/**/*.css',
+          'app/**/*.{html,js,css}',
           '.tmp/app.gen/**/*.css',
-          '.tmp/app.libs/**/*.html',
-          '.tmp/app.libs/**/*.js',
-          '.tmp/app.libs/**/*.css'
+          '.tmp/app.libs/**/*.{html,js,css}'
         ]
       },
       options: {
@@ -190,9 +186,7 @@ module.exports = function (grunt) {
       },
       appAssets: {
         files: [
-          'app/**/*.html',
-          'app/**/*.css',
-          'app/**/*.js',
+          'app/**/*.{html,js,css}',
           '.tmp/app.gen/**/*.css'
         ],
         options: {
@@ -205,9 +199,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: 'dist',
+          cwd: 'app/images',
           src: '**/*.{png,jpg,jpeg,gif}',
-          dest: 'dist'
+          dest: 'dist/images'
         }]
       }
     },
@@ -216,9 +210,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: 'dist',
+          cwd: 'app/images',
           src: '**/*.svg',
-          dest: 'dist'
+          dest: 'dist/images'
         }]
       }
     },
